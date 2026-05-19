@@ -10,15 +10,7 @@ plugins {
   alias(libs.plugins.kotlinx.serialization)
   alias(libs.plugins.kover)
   alias(libs.plugins.ktfmt)
-}
-
-buildscript {
-  repositories {
-    mavenCentral()
-    gradlePluginPortal()
-  }
-
-  dependencies {}
+  application
 }
 
 val gitVersion: Closure<String> by extra
@@ -29,9 +21,13 @@ println("Build Version = $version")
 
 kotlin { jvmToolchain { languageVersion.set(JavaLanguageVersion.of(21)) } }
 
+kover { reports { filters { excludes { classes("dev.alexschiff.enums.*") } } } }
+
 ktfmt { googleStyle() }
 
 repositories { mavenCentral() }
+
+application { mainClass = "dev.alexschiff.RomanNumeralsKt" }
 
 tasks {
   withType<KotlinJvmCompile>().configureEach {
@@ -51,15 +47,13 @@ tasks {
 }
 
 dependencies {
-  implementation(platform("org.http4k:http4k-bom:6.47.1.0"))
-  implementation("org.http4k.pro:http4k-tools-hotreload")
+  implementation(platform(libs.http4k))
   implementation("org.http4k:http4k-api-openapi")
+  implementation("org.http4k:http4k-api-ui-swagger")
   implementation("org.http4k:http4k-client-okhttp")
   implementation("org.http4k:http4k-core")
   implementation("org.http4k:http4k-format-jackson")
-  implementation("org.http4k:http4k-format-kotlinx-serialization")
-  implementation("org.http4k:http4k-serverless-core")
-  implementation("org.http4k:http4k-serverless-gcf")
+  implementation("org.http4k:http4k-platform-docker")
   testImplementation("org.http4k:http4k-testing-chaos")
   testImplementation("org.http4k:http4k-testing-kotest")
   testImplementation(libs.junit.jupiter.api)

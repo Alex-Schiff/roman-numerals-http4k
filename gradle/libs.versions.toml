@@ -3,10 +3,12 @@ com-ncorti-ktfmt-gradle = "0.26.0"
 com-palantir-git-version = "5.0.0"
 dev-detekt = "2.0.0-alpha.3"
 kotlin = "2.3.10"
+org-http4k = "6.47.1.0"
 org-jetbrains-kotlinx-kover = "0.9.8"
 org-junit = "6.0.3"
 
 [libraries]
+http4k = { module = "org.http4k:http4k-bom", version.ref = "org-http4k" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "org-junit" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "org-junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "org-junit" }
