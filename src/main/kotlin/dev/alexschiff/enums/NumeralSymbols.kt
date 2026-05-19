@@ -1,6 +1,6 @@
 package dev.alexschiff.enums
 
-@Suppress("MagicNumber")
+@Suppress("MagicNumber", "Unused")
 enum class NumeralSymbols(val intValue: Int) {
   I(1),
   IV(4),
