@@ -1,0 +1,20 @@
+[versions]
+com-ncorti-ktfmt-gradle = "0.26.0"
+com-palantir-git-version = "5.0.0"
+dev-detekt = "2.0.0-alpha.3"
+kotlin = "2.3.10"
+org-jetbrains-kotlinx-kover = "0.9.8"
+org-junit = "6.0.3"
+
+[libraries]
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "org-junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "org-junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "org-junit" }
+
+[plugins]
+ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "com-ncorti-ktfmt-gradle" }
+git-version = { id = "com.palantir.git-version", version.ref = "com-palantir-git-version" }
+detekt = { id = "dev.detekt", version.ref = "dev-detekt" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "org-jetbrains-kotlinx-kover" }
