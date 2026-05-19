@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 class SwaggerUiRouteTest {
   @Test
   fun `swagger-ui route returns 200`() {
-    val response = romanNumeralsApp(Request(GET, "/swagger-ui/"))
+    val response = romanNumeralsApp(Request(GET, "$SWAGGER_UI_PATH/"))
 
     response shouldHaveStatus OK
   }

@@ -23,6 +23,14 @@ class ConvertRomanNumeralTest {
     "D, 500",
     "CM, 900",
     "M, 1000",
+    "XIV, 14",
+    "MCMXCIV, 1994",
+    "MMM, 3000",
+    "XXXIX, 39",
+    "CDXLIV, 444",
+    "DCCCLXXXVIII, 888",
+    "MMXXIV, 2024",
+    "MMCMXCIX, 2999",
   )
   fun `roman numeral to natural number`(romanNumeral: String, expectedInteger: Int) {
     romanNumeral.convertRomanNumeral() shouldBe expectedInteger

@@ -23,6 +23,17 @@ class NotImplementedErrorFilterTest {
   }
 
   @Test
+  fun `catches NotImplementedError without message and returns 501`() {
+    val app = customErrorHandler.then { _: Request -> throw NotImplementedError() }
+
+    val response = app(Request(GET, "/"))
+
+    response shouldHaveStatus NOT_IMPLEMENTED
+    // Kotlin's NotImplementedError() default message is "An operation is not implemented."
+    response shouldHaveBody "An operation is not implemented."
+  }
+
+  @Test
   fun `passes through successful response`() {
     val app = customErrorHandler.then { _: Request -> Response(OK).body("success") }
 

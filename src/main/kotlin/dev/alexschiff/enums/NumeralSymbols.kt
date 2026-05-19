@@ -16,3 +16,5 @@ enum class NumeralSymbols(val intValue: Int) {
   CM(900),
   M(1000),
 }
+
+const val NUMERAL_SYMBOLS_REGEX = "^[IVXLCDM]+$"

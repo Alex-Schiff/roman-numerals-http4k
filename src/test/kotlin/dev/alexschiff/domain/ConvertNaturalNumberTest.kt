@@ -23,8 +23,20 @@ class ConvertNaturalNumberTest {
     "500, D",
     "900, CM",
     "1000, M",
+    "3000, MMM",
+    "39, XXXIX",
+    "444, CDXLIV",
+    "888, DCCCLXXXVIII",
+    "2024, MMXXIV",
+    "2999, MMCMXCIX",
   )
   fun `natural number to Roman numeral`(integer: Int, expectedRomanNumeral: String) {
     integer.convertNaturalNumber() shouldBe expectedRomanNumeral
+  }
+
+  @ParameterizedTest
+  @CsvSource("0", "3001", "-1")
+  fun `returns empty string for numbers out of range`(integer: Int) {
+    integer.convertNaturalNumber() shouldBe ""
   }
 }
