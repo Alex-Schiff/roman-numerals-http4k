@@ -54,9 +54,10 @@ dependencies {
   implementation("org.http4k:http4k-core")
   implementation("org.http4k:http4k-format-jackson")
   implementation("org.http4k:http4k-platform-docker")
-  testImplementation("org.http4k:http4k-testing-chaos")
-  testImplementation("org.http4k:http4k-testing-kotest")
   testImplementation(libs.junit.jupiter.api)
   testImplementation(libs.junit.jupiter.engine)
+  testImplementation(libs.junit.jupiter.params)
   testImplementation(libs.junit.platform.launcher)
+  testImplementation("org.http4k:http4k-testing-chaos")
+  testImplementation("org.http4k:http4k-testing-kotest")
 }

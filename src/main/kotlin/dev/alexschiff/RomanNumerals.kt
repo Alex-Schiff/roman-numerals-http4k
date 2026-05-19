@@ -1,6 +1,7 @@
 package dev.alexschiff
 
 import dev.alexschiff.filters.customErrorHandler
+import dev.alexschiff.routes.SWAGGER_UI_PATH
 import dev.alexschiff.routes.naturalNumberContractRoute
 import dev.alexschiff.routes.romanNumeralContractRoute
 import dev.alexschiff.routes.swaggerUiRoute
@@ -21,7 +22,7 @@ import org.http4k.routing.routes
 import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 
-const val ROOT_URI = "/convert"
+const val BASE_PATH = "/convert"
 
 val contract = contract {
   renderer =
@@ -32,16 +33,16 @@ val contract = contract {
     )
   descriptionPath = "/openapi.json"
 
-  routes += naturalNumberContractRoute(ROOT_URI)
-  routes += romanNumeralContractRoute(ROOT_URI)
+  routes += naturalNumberContractRoute(BASE_PATH)
+  routes += romanNumeralContractRoute(BASE_PATH)
 }
 
 val romanNumeralsApp: HttpHandler =
   customErrorHandler.then(
     routes(
       contract,
-      "/swagger-ui/" bind swaggerUiRoute(),
-      "/swagger-ui" bind GET to { Response(FOUND).header("Location", "/swagger-ui/") },
+      "$SWAGGER_UI_PATH/" bind swaggerUiRoute(),
+      SWAGGER_UI_PATH bind GET to { Response(FOUND).header("Location", "$SWAGGER_UI_PATH/") },
     )
   )
 

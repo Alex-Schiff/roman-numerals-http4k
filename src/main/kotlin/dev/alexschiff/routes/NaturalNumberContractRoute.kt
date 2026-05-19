@@ -1,5 +1,6 @@
 package dev.alexschiff.routes
 
+import dev.alexschiff.domain.convertNaturalNumber
 import org.http4k.contract.ContractRoute
 import org.http4k.contract.Tag
 import org.http4k.contract.div
@@ -7,14 +8,16 @@ import org.http4k.contract.meta
 import org.http4k.core.ContentType.Companion.TEXT_PLAIN
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
+import org.http4k.core.Response
 import org.http4k.core.Status.Companion.NOT_IMPLEMENTED
+import org.http4k.core.Status.Companion.OK
 import org.http4k.lens.Path
 import org.http4k.lens.int
 
-const val NATURAL_NUMBER_URI = "/natural-number"
+const val NATURAL_NUMBER_PATH = "/natural-number"
 
-fun naturalNumberContractRoute(rootUri: String): ContractRoute =
-  "$rootUri$NATURAL_NUMBER_URI" /
+fun naturalNumberContractRoute(basePath: String): ContractRoute =
+  "$basePath$NATURAL_NUMBER_PATH" /
     Path.int().of("naturalNumber", "The natural number to convert") meta
     {
       summary = "Convert natural number to Roman numeral."
@@ -25,6 +28,6 @@ fun naturalNumberContractRoute(rootUri: String): ContractRoute =
       returning(NOT_IMPLEMENTED to "Not implemented yet")
     } bindContract
     GET to
-    { _ ->
-      { _: Request -> TODO("Work in progress!") }
+    { naturalNumber: Int ->
+      { _: Request -> Response(OK).body(naturalNumber.convertNaturalNumber()) }
     }
